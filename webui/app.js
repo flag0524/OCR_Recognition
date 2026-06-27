@@ -67,7 +67,7 @@
   const dz = $('#dz'), input = $('#fileInput'), dzText = $('#dzText');
   function setFile(f) {
     picked = f;
-    dzText.textContent = f ? f.name : 'Drag a file here';
+    dzText.textContent = f ? f.name : '파일을 여기로 드래그하세요';
     if (f) convertNow();  // 업로드 즉시 원본 내용 표출(자동 변환)
   }
   $('#browseBtn').addEventListener('click', e => { e.stopPropagation(); input.click(); });
@@ -76,6 +76,23 @@
   ['dragover', 'dragenter'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('drag'); }));
   ['dragleave', 'drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('drag'); }));
   dz.addEventListener('drop', e => { if (e.dataTransfer.files[0]) setFile(e.dataTransfer.files[0]); });
+
+  // ---- 예시 카드: 내장 샘플을 받아 File로 만들어 자동 변환 ----
+  $$('.ex-card').forEach(card => card.addEventListener('click', async () => {
+    if (card.classList.contains('loading')) return;
+    const id = card.dataset.sample, name = card.dataset.name, type = card.dataset.type;
+    card.classList.add('loading');
+    try {
+      const res = await fetch(`/api/sample/${id}`);
+      if (!res.ok) throw new Error('샘플을 불러오지 못했습니다');
+      const blob = await res.blob();
+      setFile(new File([blob], name, { type }));  // setFile이 자동 변환 트리거
+    } catch (err) {
+      showToast(String(err.message || err), true);
+    } finally {
+      card.classList.remove('loading');
+    }
+  }));
 
   // ---- 토스트 ----
   const toast = $('#toast');
@@ -131,12 +148,14 @@
 
     run.classList.add('is-running');
     const ico = run.querySelector('.ico'), lbl = run.querySelector('.lbl'), o = ico.innerHTML;
-    ico.innerHTML = '<span class="spin"></span>'; lbl.textContent = 'Running…';
+    ico.innerHTML = '<span class="spin"></span>'; lbl.textContent = '파싱 중…';
 
     try {
       const fd = new FormData();
       fd.append('file', picked);
       fd.append('use_llm', modelToUseLlm() ? 'true' : 'false');
+      const pag = $('#optPaginate');
+      fd.append('paginate', pag && pag.classList.contains('on') ? 'true' : 'false');
       const res = await fetch('/api/convert', { method: 'POST', body: fd });
       const data = await res.json();
       if (!res.ok) throw new Error(data.detail || '변환 실패');
@@ -157,7 +176,7 @@
     } catch (err) {
       showToast(String(err.message || err), true);
     } finally {
-      run.classList.remove('is-running'); ico.innerHTML = o; lbl.textContent = 'Run';
+      run.classList.remove('is-running'); ico.innerHTML = o; lbl.textContent = '문서 파싱';
     }
   }
   run.addEventListener('click', convertNow);  // Run 버튼으로 재변환도 가능

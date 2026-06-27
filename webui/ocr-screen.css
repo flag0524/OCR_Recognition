@@ -341,6 +341,71 @@ html.dark .badge{background:#fff;color:#161616;}
 .cfg-check.on .cbox svg{opacity:1;}
 .cfg-check .info{width:15px;height:15px;color:var(--muted);}
 
+/* ---- 참고 화면 반영: 안내 배너 · 설정 그룹 라벨 · 준비 중(비활성) 토글 (토큰 재사용) ---- */
+.cfg-banner{
+  font-size:13px;line-height:1.6;color:var(--body);
+  background:var(--accent-blue-soft);
+  border:1px solid color-mix(in oklch, var(--accent-blue) 30%, transparent);
+  border-radius:var(--r-md);padding:12px 16px;margin-bottom:18px;
+}
+.cfg-banner b{color:var(--ink);font-weight:700;}
+.cfg-group{
+  grid-column:1/-1;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-top:6px;padding-top:14px;border-top:1px solid var(--hairline);
+}
+.cfg-group:first-child{margin-top:0;padding-top:0;border-top:0;}
+.soon{
+  font-size:11px;font-weight:700;color:var(--muted);
+  background:var(--surface-strong);padding:3px 8px;border-radius:var(--r-full);
+}
+.opt.disabled,.cfg-check.disabled{opacity:.55;cursor:not-allowed;pointer-events:none;}
+
+/* ---- 참고 화면(datalab) 파란 테마: 핵심 강조를 기존 accent-blue 토큰으로 (토큰 값 불변, 요소 단위 적용) ---- */
+.model.sel{border-color:var(--accent-blue);box-shadow:0 0 0 3px var(--accent-blue-soft);}
+.model.sel .radio{border-color:var(--accent-blue);}
+.model.sel .radio::after{background:var(--accent-blue);}
+.res-tab.is-on::after,.up-tab.is-on::after{background:var(--accent-blue);}
+.cfg-check.on .cbox,.opt.on .obox,.check.is-on .box{background:var(--accent-blue);border-color:var(--accent-blue);}
+.dropzone:hover,.dropzone.drag{border-color:var(--accent-blue);background:var(--accent-blue-soft);}
+/* .screen button{background:none;color:inherit}(0,0,1,1)를 이기도록 specificity 상향 */
+.screen .run-btn{background:var(--accent-blue);color:#fff;box-shadow:0 2px 8px rgba(59,127,227,.35);margin-left:0;width:100%;justify-content:center;height:46px;}
+.screen .run-btn:hover{background:#2f6fd0;}
+html.dark .screen .run-btn:hover{background:#5a93e6;}
+.res-footer{justify-content:center;}
+
+/* 헤더 버튼: .screen button 리셋(0,0,1,1)을 이기도록 specificity 상향 — 디자인 원본 채움/테두리 복원 */
+.screen .tb-convert{background:var(--ink);color:var(--canvas);}
+html.dark .screen .tb-convert{background:#fff;color:#161616;}
+.screen .btn--primary{background:var(--primary);color:#fff;}
+.screen .btn--primary:hover{background:var(--primary-active);}
+.screen .btn--outline{background:var(--surface-soft);color:var(--ink);border:1px solid var(--hairline);}
+.screen .btn--outline:hover{border-color:var(--ink);}
+.screen .btn--ghost{color:var(--muted);}
+.screen .theme-toggle,.screen .tb-round{background:var(--surface-soft);color:var(--body);border:1px solid var(--hairline);}
+.screen .theme-toggle:hover,.screen .tb-round:hover{border-color:var(--ink);color:var(--ink);}
+.screen .tb-chev,.screen .tb-pencil{color:var(--muted);}
+
+/* ---- 좌측 스크롤 + 예시 카드 갤러리 ---- */
+.up-body{overflow-y:auto;}
+.pane--doc .dropzone{flex:0 0 auto;min-height:200px;}
+.ex-head{margin:22px 0 12px;font-size:13px;font-weight:800;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;}
+.ex-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.ex-card{
+  text-align:left;padding:14px 16px;border:1px solid var(--hairline);border-radius:var(--r-md);
+  background:var(--surface-soft);box-shadow:var(--shadow-soft);
+  display:flex;flex-direction:column;gap:6px;transition:border-color .15s,transform .12s;
+}
+.ex-card:hover{border-color:var(--accent-blue);transform:translateY(-1px);}
+.ex-card:focus-visible{outline:2px solid var(--accent-blue);outline-offset:2px;}
+.ex-card.loading{opacity:.55;pointer-events:none;}
+.ex-top{display:flex;align-items:center;justify-content:space-between;min-height:16px;}
+.ex-cat{font-size:11px;font-weight:700;color:var(--muted);}
+.ex-arrow{font-size:14px;color:var(--muted);transition:transform .15s,color .15s;}
+.ex-card:hover .ex-arrow{color:var(--accent-blue);transform:translateX(2px);}
+.ex-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.35;}
+.ex-tags{display:flex;gap:6px;margin-top:2px;}
+.ex-tags span{font-size:11px;font-weight:700;color:var(--body);background:var(--surface-strong);padding:3px 8px;border-radius:var(--r-full);}
+
 /* ---- 페이지 셸: 디자인 시안은 고정 1180×760 카드. 실사용 위해 반응형 보강 ---- */
 html,body{margin:0;height:100%;}
 body{background:#ECECEC;display:grid;place-items:center;padding:24px;

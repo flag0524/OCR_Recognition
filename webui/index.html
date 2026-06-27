@@ -34,28 +34,76 @@
       <!-- 좌측: 업로드 -->
       <section class="pane pane--doc">
         <div class="up-tabs">
-          <button class="up-tab is-on" data-uptab>Upload</button>
+          <button class="up-tab is-on" data-uptab>업로드</button>
           <button class="up-tab" data-uptab title="준비 중">URL</button>
-          <button class="up-tab" data-uptab title="준비 중">Examples</button>
         </div>
         <div class="up-body">
           <div class="dropzone" id="dz">
             <div class="upic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 16v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"/></svg></div>
-            <div class="big" id="dzText">Drag a file here</div>
-            <div class="or">or</div>
-            <button class="browse" id="browseBtn">Browse files</button>
+            <div class="big" id="dzText">파일을 여기로 드래그하세요</div>
+            <div class="or">또는</div>
+            <button class="browse" id="browseBtn">파일 탐색</button>
             <input type="file" id="fileInput" hidden
                    accept=".pdf,.docx,.xlsx,.hwp,.png,.jpg,.jpeg">
           </div>
           <div class="formats"><b>PDF, DOCX, XLSX, HWP, PNG, JPEG</b> · 텍스트 PDF·스캔 이미지·오피스 문서를 구조 보존 추출합니다.</div>
+
+          <!-- 예시 문서: 클릭 시 내장 샘플을 생성해 그대로 파이프라인 변환 -->
+          <div class="ex-head">예시 문서</div>
+          <div class="ex-grid">
+            <button class="ex-card" data-sample="spreadsheet-empty" data-name="빈 셀 있는 스프레드시트.xlsx" data-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+              <div class="ex-top"><span class="ex-cat"></span><span class="ex-arrow" aria-hidden="true">→</span></div>
+              <div class="ex-title">빈 셀 있는 스프레드시트</div><div class="ex-tags"><span>변환</span></div>
+            </button>
+            <button class="ex-card" data-sample="section-hierarchy" data-name="긴 문서의 섹션 계층 구조.pdf" data-type="application/pdf">
+              <div class="ex-top"><span class="ex-cat"></span><span class="ex-arrow" aria-hidden="true">→</span></div>
+              <div class="ex-title">긴 문서의 섹션 계층 구조</div><div class="ex-tags"><span>변환</span></div>
+            </button>
+            <button class="ex-card" data-sample="financial-10k" data-name="금융 10K 테이블 추출.pdf" data-type="application/pdf">
+              <div class="ex-top"><span class="ex-cat">재정</span><span class="ex-arrow" aria-hidden="true">→</span></div>
+              <div class="ex-title">금융 10K 테이블 추출</div><div class="ex-tags"><span>변환</span><span>추출</span></div>
+            </button>
+            <button class="ex-card" data-sample="medical" data-name="의료 세부사항 vs 면책 조항.pdf" data-type="application/pdf">
+              <div class="ex-top"><span class="ex-cat">의료</span><span class="ex-arrow" aria-hidden="true">→</span></div>
+              <div class="ex-title">의료 세부사항 vs. 면책 조항</div><div class="ex-tags"><span>변환</span><span>구간</span></div>
+            </button>
+            <button class="ex-card" data-sample="hearing" data-name="뉴욕시 시의회 청문회 증언.pdf" data-type="application/pdf">
+              <div class="ex-top"><span class="ex-cat">정부</span><span class="ex-arrow" aria-hidden="true">→</span></div>
+              <div class="ex-title">뉴욕시 시의회 청문회 증언</div><div class="ex-tags"><span>변환</span><span>구간</span></div>
+            </button>
+            <button class="ex-card" data-sample="complex-table" data-name="복소 표.xlsx" data-type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+              <div class="ex-top"><span class="ex-cat">표</span><span class="ex-arrow" aria-hidden="true">→</span></div>
+              <div class="ex-title">복소 표</div><div class="ex-tags"><span>변환</span></div>
+            </button>
+            <button class="ex-card" data-sample="math-doc" data-name="수학 중심 문서.pdf" data-type="application/pdf">
+              <div class="ex-top"><span class="ex-cat">수학</span><span class="ex-arrow" aria-hidden="true">→</span></div>
+              <div class="ex-title">수학 중심 문서</div><div class="ex-tags"><span>변환</span></div>
+            </button>
+            <button class="ex-card" data-sample="japanese-table" data-name="일본어 + 표.pdf" data-type="application/pdf">
+              <div class="ex-top"><span class="ex-cat">일본어</span><span class="ex-arrow" aria-hidden="true">→</span></div>
+              <div class="ex-title">일본어 + 표</div><div class="ex-tags"><span>변환</span></div>
+            </button>
+            <button class="ex-card" data-sample="invoice" data-name="송장.pdf" data-type="application/pdf">
+              <div class="ex-top"><span class="ex-cat"></span><span class="ex-arrow" aria-hidden="true">→</span></div>
+              <div class="ex-title">송장</div><div class="ex-tags"><span>변환</span><span>추출</span></div>
+            </button>
+            <button class="ex-card" data-sample="math-pdf" data-name="수학 중심의 PDF.pdf" data-type="application/pdf">
+              <div class="ex-top"><span class="ex-cat"></span><span class="ex-arrow" aria-hidden="true">→</span></div>
+              <div class="ex-title">수학 중심의 PDF</div><div class="ex-tags"><span>변환</span></div>
+            </button>
+            <button class="ex-card" data-sample="science-pdf" data-name="복잡한 표와 도표가 포함된 과학 PDF.pdf" data-type="application/pdf">
+              <div class="ex-top"><span class="ex-cat"></span><span class="ex-arrow" aria-hidden="true">→</span></div>
+              <div class="ex-title">복잡한 표와 도표가 포함된 과학 PDF</div><div class="ex-tags"><span>변환</span></div>
+            </button>
+          </div>
         </div>
       </section>
 
       <!-- 우측: Configuration / Results -->
       <section class="pane pane--results">
         <div class="res-tabs">
-          <button class="res-tab is-on" data-rtab="config">Configuration</button>
-          <button class="res-tab" data-rtab="results">Results</button>
+          <button class="res-tab is-on" data-rtab="config">구성</button>
+          <button class="res-tab" data-rtab="results">결과</button>
         </div>
 
         <!-- Results 전용 하위 탭 (Configuration일 때 숨김) -->
@@ -68,38 +116,66 @@
         <div class="res-body">
           <!-- Configuration 패널 -->
           <div class="panel is-on" data-panel="config">
-            <div class="model-row">
-              <div class="model" data-model="fast"><div class="mh"><span class="mt">Fast</span><span class="radio"></span></div><div class="md">결정론적 추출만. 가장 빠르고 API 키가 필요 없습니다.</div></div>
-              <div class="model sel" data-model="balanced"><div class="mh"><span class="mt">Balanced</span><span class="radio"></span></div><div class="md">대부분 문서에 적합한 기본값. 라이브러리 좌표·구조 추출.</div></div>
-              <div class="model" data-model="accurate"><div class="mh"><span class="mt">Accurate</span><span class="radio"></span></div><div class="md">LLM 맥락 교정 단계 사용(읽기순서·제목·캡션). API 키 필요.</div></div>
+            <!-- 안내 배너: 로컬 파이프라인이 실제 반영하는 범위 고지(참고 화면의 한도 배너 위치) -->
+            <div class="cfg-banner">
+              <b>로컬 파이프라인</b> · 페이지 제한 없음. 현재 <b>모델 선택</b>만 실제 변환에 반영되며, 아래 부가 옵션은 준비 중입니다.
             </div>
 
-            <div class="sec-label">Extras</div>
+            <div class="model-row">
+              <div class="model" data-model="fast"><div class="mh"><span class="mt">빠르다</span><span class="radio"></span></div><div class="md">가장 낮은 지연 시간. 결정론적 추출만 수행하며 API 키가 필요 없습니다.</div></div>
+              <div class="model sel" data-model="balanced"><div class="mh"><span class="mt">밸런스드</span><span class="radio"></span></div><div class="md">정확성과 지연 시간의 균형. 대부분의 문서에 잘 맞는 기본값입니다.</div></div>
+              <div class="model" data-model="accurate"><div class="mh"><span class="mt">정확합니다</span><span class="radio"></span></div><div class="md">가장 높은 정확도. LLM 맥락 교정(읽기순서·제목·캡션)을 사용하며 API 키가 필요합니다.</div></div>
+            </div>
 
-            <div class="opt" data-opt="tables">
+            <div class="sec-label">부가 영상</div>
+
+            <div class="opt disabled" title="준비 중">
               <span class="obox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
               <div>
-                <div class="otitle">표 구조 복원</div>
-                <div class="odesc">병합셀·다중헤더를 GFM 표로 복원하고 페이지 횡단 표를 병합합니다. <i>재무·통계 보고서에 유용.</i></div>
+                <div class="otitle">트랙 변경 <span class="badge">DOCX 필요</span> <span class="soon">준비 중</span></div>
+                <div class="odesc">MS Word의 변경 추적 수정본과 주석을 Markdown·HTML로 표시합니다. <i>법률 심사 워크플로우에 유용.</i></div>
               </div>
             </div>
 
-            <div class="opt" data-opt="caption">
+            <div class="opt disabled" title="준비 중">
               <span class="obox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
               <div>
-                <div class="otitle">이미지·캡션 태깅</div>
-                <div class="odesc">그림/차트 위치에 태그를 삽입하고 하단 캡션을 본문과 분리합니다. <i>도표가 많은 문서에 유용.</i></div>
+                <div class="otitle">차트 이해 <span class="soon">준비 중</span></div>
+                <div class="odesc">차트·그래프의 데이터를 HTML 테이블로 변환합니다. <i>차트가 밀집된 보고서에 유용.</i></div>
+              </div>
+            </div>
+
+            <div class="opt disabled" title="준비 중">
+              <span class="obox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <div>
+                <div class="otitle">인포그래픽 모드 <span class="soon">준비 중</span></div>
+                <div class="odesc">분산된 텍스트 블록과 시각 레이아웃에 최적화된 OCR입니다. <i>마케팅 자료·포스터에 유용.</i></div>
               </div>
             </div>
 
             <div class="accordion open" id="acc">
               <div class="acc-head" id="accHead">
                 <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                Additional Config
+                추가 구성
               </div>
               <div class="acc-body">
-                <label class="cfg-check" data-cc>페이지 번호 보존 <span class="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></span></label>
-                <label class="cfg-check" data-cc>각주·미주 포함 <span class="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></span></label>
+                <div class="cfg-group">출력 구조</div>
+                <label class="cfg-check" data-cc id="optPaginate"><span class="cbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>페이지네이트 <span class="info" title="페이지가 바뀔 때마다 Markdown에 구분자를 삽입합니다"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></span></label>
+                <label class="cfg-check disabled" title="준비 중">페이지 헤더 유지 <span class="soon">준비 중</span></label>
+                <label class="cfg-check disabled" title="준비 중">페이지 풋 유지 <span class="soon">준비 중</span></label>
+
+                <div class="cfg-group">내용 깊이</div>
+                <label class="cfg-check disabled" title="준비 중">추출 링크 <span class="soon">준비 중</span></label>
+                <label class="cfg-check disabled" title="준비 중">새로운 블록 유형 <span class="soon">준비 중</span></label>
+                <label class="cfg-check disabled" title="준비 중">이미지 캡션 비활성화 <span class="soon">준비 중</span></label>
+
+                <div class="cfg-group">BBOX / 자신감</div>
+                <label class="cfg-check disabled" title="준비 중">단어 B박스 <span class="soon">준비 중</span></label>
+                <label class="cfg-check disabled" title="준비 중">테이블 셀 B박스 <span class="soon">준비 중</span></label>
+                <label class="cfg-check disabled" title="준비 중">목록 항목 B박스 <span class="soon">준비 중</span></label>
+
+                <div class="cfg-group">성능</div>
+                <label class="cfg-check disabled" title="준비 중">캐시 건너뛰기 <span class="soon">준비 중</span></label>
               </div>
             </div>
           </div>
@@ -109,7 +185,7 @@
             <div class="empty" id="emptyBlocks">
               <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
               <h4>결과가 없습니다</h4>
-              <p>좌측에서 문서를 올리고 <b>Run</b>을 누르면 구조 보존 결과가 여기에 표시됩니다.</p>
+              <p>좌측에서 문서를 올리면 자동으로 구조 보존 결과가 여기에 표시됩니다.</p>
             </div>
             <div class="block-tag" id="blocksTag" style="display:none">DOCUMENT</div>
             <div class="text-card" id="blocksCard" style="display:none"><div id="rendered"></div></div>
@@ -127,8 +203,7 @@
         </div>
 
         <div class="res-footer">
-          <label class="check" data-check title="현재 데모에서는 무시됩니다"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Skip cache</label>
-          <button class="run-btn" id="runBtn"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="lbl">Run</span></button>
+          <button class="run-btn" id="runBtn"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="lbl">문서 파싱</span></button>
         </div>
         <div class="toast" id="toast"></div>
       </section>

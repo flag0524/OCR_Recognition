@@ -5,7 +5,7 @@ import tempfile
 from pathlib import Path
 
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 
 # src 레이아웃 패키지 import 경로 보장.
@@ -13,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 from ocr_docintel.pipeline import process
 from ocr_docintel.identify import UnsupportedFormatError
 from ocr_docintel.ocr_scan import TesseractUnavailableError
+import samples
 
 WEBUI_DIR = Path(__file__).parent / "webui"
 
@@ -20,7 +21,8 @@ app = FastAPI(title="RUDA DocIntel — OCR Pipeline")
 
 
 @app.post("/api/convert")
-async def convert(file: UploadFile = File(...), use_llm: str = Form("false")):
+async def convert(file: UploadFile = File(...), use_llm: str = Form("false"),
+                  paginate: str = Form("false")):
     """업로드 문서를 구조 보존 추출해 Markdown/JSON으로 반환."""
     data = await file.read()
     # 원본 파일명을 보존해 문서 제목이 임시파일명으로 나오지 않도록 임시 디렉터리에 그대로 저장.
@@ -29,7 +31,8 @@ async def convert(file: UploadFile = File(...), use_llm: str = Form("false")):
         tmp_path = Path(tmpdir) / safe_name
         tmp_path.write_bytes(data)
         try:
-            res = process(str(tmp_path), use_llm=(use_llm.lower() == "true"))
+            res = process(str(tmp_path), use_llm=(use_llm.lower() == "true"),
+                          paginate=(paginate.lower() == "true"))
         except (UnsupportedFormatError, TesseractUnavailableError) as e:
             raise HTTPException(status_code=415, detail=str(e))
         except Exception as e:  # 손상 파일 등
@@ -42,6 +45,18 @@ async def convert(file: UploadFile = File(...), use_llm: str = Form("false")):
         "markdown": res.markdown,
         "json": res.json,
     })
+
+
+@app.get("/api/sample/{sample_id}")
+async def sample(sample_id: str):
+    """예시 카드용 내장 샘플 문서를 즉석 생성해 원본 바이트로 반환."""
+    try:
+        _name, ctype, data = samples.build_sample(sample_id)
+    except KeyError:
+        raise HTTPException(status_code=404, detail=f"알 수 없는 샘플: {sample_id}")
+    except (ImportError, RuntimeError, OSError) as e:  # 의존성/유니코드 폰트 부재
+        raise HTTPException(status_code=503, detail=f"샘플 생성 불가: {e}")
+    return Response(content=data, media_type=ctype)
 
 
 # 정적 UI (마지막에 마운트해 /api 라우트를 가리지 않도록).
