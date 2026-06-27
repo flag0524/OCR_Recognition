@@ -65,7 +65,11 @@
   // ---- 파일 선택 / 드래그 ----
   let picked = null;
   const dz = $('#dz'), input = $('#fileInput'), dzText = $('#dzText');
-  function setFile(f) { picked = f; dzText.textContent = f ? f.name : 'Drag a file here'; }
+  function setFile(f) {
+    picked = f;
+    dzText.textContent = f ? f.name : 'Drag a file here';
+    if (f) convertNow();  // 업로드 즉시 원본 내용 표출(자동 변환)
+  }
   $('#browseBtn').addEventListener('click', e => { e.stopPropagation(); input.click(); });
   dz.addEventListener('click', () => input.click());
   input.addEventListener('change', () => setFile(input.files[0] || null));
@@ -121,7 +125,7 @@
 
   // ---- Run: 실제 변환 호출 ----
   const run = $('#runBtn');
-  run.addEventListener('click', async () => {
+  async function convertNow() {
     if (run.classList.contains('is-running')) return;
     if (!picked) { showToast('먼저 문서를 올려주세요', true); return; }
 
@@ -155,7 +159,8 @@
     } finally {
       run.classList.remove('is-running'); ico.innerHTML = o; lbl.textContent = 'Run';
     }
-  });
+  }
+  run.addEventListener('click', convertNow);  // Run 버튼으로 재변환도 가능
 
   // ---- 초기 테마 ----
   let dark = false; try { dark = localStorage.getItem('ocr-theme') === 'dark'; } catch (e) {}
