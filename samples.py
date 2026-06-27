@@ -172,6 +172,7 @@ def _unicode_pdf(title, lines, font_candidates, table=None) -> bytes:
 
 
 _JP_FONTS = [("C:/Windows/Fonts/meiryo.ttc", 0), ("C:/Windows/Fonts/msgothic.ttc", 0), ("C:/Windows/Fonts/YuGothR.ttc", 0)]
+_HI_FONTS = [("C:/Windows/Fonts/Nirmala.ttf", 0), ("C:/Windows/Fonts/mangal.ttf", 0)]
 
 
 def _japanese_table() -> bytes:
@@ -180,6 +181,14 @@ def _japanese_table() -> bytes:
         ["これは日本語の本文です。", "下の表に売上をまとめます。"],
         _JP_FONTS,
         table=[["項目", "金額"], ["売上", "1200"], ["費用", "800"]],
+    )
+
+
+def _hindi() -> bytes:
+    return _unicode_pdf(
+        "हिंदी नमूना दस्तावेज़",
+        ["यह एक हिंदी पाठ है।", "यह दूसरी पंक्ति है।"],
+        _HI_FONTS,
     )
 
 
@@ -196,6 +205,7 @@ SAMPLES = {
     "math-doc":          ("수학 중심 문서.pdf", "application/pdf", _math_doc),
     "japanese-table":    ("일본어 + 표.pdf", "application/pdf", _japanese_table),
     "invoice":           ("송장.pdf", "application/pdf", _invoice),
+    "hindi":             ("힌디어.pdf", "application/pdf", _hindi),
     "math-pdf":          ("수학 중심의 PDF.pdf", "application/pdf", _math_pdf),
     "science-pdf":       ("복잡한 표와 도표가 포함된 과학 PDF.pdf", "application/pdf", _science_table),
 }

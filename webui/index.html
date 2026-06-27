@@ -46,7 +46,7 @@
             <input type="file" id="fileInput" hidden
                    accept=".pdf,.docx,.xlsx,.hwp,.png,.jpg,.jpeg">
           </div>
-          <div class="formats"><b>PDF, DOCX, XLSX, HWP, PNG, JPEG</b> · 텍스트 PDF·스캔 이미지·오피스 문서를 구조 보존 추출합니다.</div>
+          <div class="formats">PDF, DOC, DOCX, ODT, XLS, XLSX, ODS, CSV, PPT, PPTX, ODP, HTML, EPUB, PNG, JPEG, WEBP, GIF, TIFF</div>
 
           <!-- 예시 문서: 클릭 시 내장 샘플을 생성해 그대로 파이프라인 변환 -->
           <div class="ex-head">예시 문서</div>
@@ -87,6 +87,10 @@
               <div class="ex-top"><span class="ex-cat"></span><span class="ex-arrow" aria-hidden="true">→</span></div>
               <div class="ex-title">송장</div><div class="ex-tags"><span>변환</span><span>추출</span></div>
             </button>
+            <button class="ex-card" data-sample="hindi" data-name="힌디어.pdf" data-type="application/pdf">
+              <div class="ex-top"><span class="ex-cat"></span><span class="ex-arrow" aria-hidden="true">→</span></div>
+              <div class="ex-title">힌디어</div><div class="ex-tags"><span>변환</span></div>
+            </button>
             <button class="ex-card" data-sample="math-pdf" data-name="수학 중심의 PDF.pdf" data-type="application/pdf">
               <div class="ex-top"><span class="ex-cat"></span><span class="ex-arrow" aria-hidden="true">→</span></div>
               <div class="ex-title">수학 중심의 PDF</div><div class="ex-tags"><span>변환</span></div>
@@ -116,9 +120,10 @@
         <div class="res-body">
           <!-- Configuration 패널 -->
           <div class="panel is-on" data-panel="config">
-            <!-- 안내 배너: 로컬 파이프라인이 실제 반영하는 범위 고지(참고 화면의 한도 배너 위치) -->
-            <div class="cfg-banner">
-              <b>로컬 파이프라인</b> · 페이지 제한 없음. 현재 <b>모델 선택</b>만 실제 변환에 반영되며, 아래 부가 옵션은 준비 중입니다.
+            <!-- 전환 한도 배너(원본 디자인) -->
+            <div class="quota-banner">
+              <div class="qb-title">전환을 위한 공공 한도</div>
+              <div class="qb-sub">구문당 10페이지 <a class="qb-link" href="#" onclick="return false">제한을 제거하려면 가입하세요 →</a></div>
             </div>
 
             <div class="model-row">

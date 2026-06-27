@@ -342,13 +342,15 @@ html.dark .badge{background:#fff;color:#161616;}
 .cfg-check .info{width:15px;height:15px;color:var(--muted);}
 
 /* ---- 참고 화면 반영: 안내 배너 · 설정 그룹 라벨 · 준비 중(비활성) 토글 (토큰 재사용) ---- */
-.cfg-banner{
-  font-size:13px;line-height:1.6;color:var(--body);
+.quota-banner{
   background:var(--accent-blue-soft);
-  border:1px solid color-mix(in oklch, var(--accent-blue) 30%, transparent);
+  border:1px solid color-mix(in oklch, var(--accent-blue) 35%, transparent);
   border-radius:var(--r-md);padding:12px 16px;margin-bottom:18px;
 }
-.cfg-banner b{color:var(--ink);font-weight:700;}
+.quota-banner .qb-title{font-size:13px;font-weight:700;color:var(--ink);}
+.quota-banner .qb-sub{margin-top:3px;font-size:13px;color:var(--body);}
+.quota-banner .qb-link{color:var(--accent-blue);font-weight:700;text-decoration:none;margin-left:8px;}
+.quota-banner .qb-link:hover{text-decoration:underline;}
 .cfg-group{
   grid-column:1/-1;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
   color:var(--muted);margin-top:6px;padding-top:14px;border-top:1px solid var(--hairline);
