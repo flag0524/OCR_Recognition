@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: ocr-docintel
+Version: 0.1.0
+Summary: 다중 포맷 구조 보존 OCR 시스템 (텍스트 PDF MVP)
+Requires-Python: >=3.10
+License-File: LICENSE
+Requires-Dist: pymupdf
+Requires-Dist: pdfplumber
+Requires-Dist: jsonschema
+Provides-Extra: llm
+Requires-Dist: anthropic; extra == "llm"
+Provides-Extra: docx
+Requires-Dist: python-docx; extra == "docx"
+Provides-Extra: xlsx
+Requires-Dist: openpyxl; extra == "xlsx"
+Provides-Extra: ocr
+Requires-Dist: pytesseract; extra == "ocr"
+Requires-Dist: pillow; extra == "ocr"
+Provides-Extra: hwp
+Requires-Dist: pyhwp; extra == "hwp"
+Provides-Extra: web
+Requires-Dist: fastapi; extra == "web"
+Requires-Dist: uvicorn[standard]; extra == "web"
+Requires-Dist: python-multipart; extra == "web"
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: reportlab; extra == "dev"
+Requires-Dist: python-docx; extra == "dev"
+Requires-Dist: openpyxl; extra == "dev"
+Requires-Dist: pytesseract; extra == "dev"
+Requires-Dist: pillow; extra == "dev"
+Requires-Dist: pyhwp; extra == "dev"
+Requires-Dist: fastapi; extra == "dev"
+Requires-Dist: uvicorn[standard]; extra == "dev"
+Requires-Dist: python-multipart; extra == "dev"
+Requires-Dist: httpx; extra == "dev"
+Dynamic: license-file

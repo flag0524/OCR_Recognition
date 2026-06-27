@@ -1,0 +1,2 @@
+[console_scripts]
+ocr-docintel = ocr_docintel.cli:main
