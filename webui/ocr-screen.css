@@ -376,8 +376,9 @@ html.dark .screen .run-btn:hover{background:#5a93e6;}
 /* 헤더 버튼: .screen button 리셋(0,0,1,1)을 이기도록 specificity 상향 — 디자인 원본 채움/테두리 복원 */
 .screen .tb-convert{background:var(--ink);color:var(--canvas);}
 html.dark .screen .tb-convert{background:#fff;color:#161616;}
-.screen .btn--primary{background:var(--primary);color:#fff;}
-.screen .btn--primary:hover{background:var(--primary-active);}
+.screen .btn--primary{background:var(--accent-blue);color:#fff;}
+.screen .btn--primary:hover{background:#2f6fd0;}
+html.dark .screen .btn--primary:hover{background:#5a93e6;}
 .screen .btn--outline{background:var(--surface-soft);color:var(--ink);border:1px solid var(--hairline);}
 .screen .btn--outline:hover{border-color:var(--ink);}
 .screen .btn--ghost{color:var(--muted);}
