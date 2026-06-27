@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ocr-docintel"
+version = "0.1.0"
+description = "다중 포맷 구조 보존 OCR 시스템 (텍스트 PDF MVP)"
+requires-python = ">=3.10"
+dependencies = [
+    "pymupdf",
+    "pdfplumber",
+    "jsonschema",
+]
+
+[project.optional-dependencies]
+llm = ["anthropic"]
+docx = ["python-docx"]
+xlsx = ["openpyxl"]
+ocr = ["pytesseract", "pillow"]   # + 시스템 Tesseract 바이너리 필요
+hwp = ["pyhwp"]
+web = ["fastapi", "uvicorn[standard]", "python-multipart"]
+dev = ["pytest", "reportlab", "python-docx", "openpyxl", "pytesseract", "pillow", "pyhwp", "fastapi", "uvicorn[standard]", "python-multipart", "httpx"]
+
+[project.scripts]
+ocr-docintel = "ocr_docintel.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
