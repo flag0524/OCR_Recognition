@@ -20,10 +20,27 @@ def _table_to_md(rows: list[list[str]]) -> str:
     return "\n".join(lines)
 
 
-def to_markdown(doc: Document) -> str:
-    """System Prompt §5 구조의 마크다운 생성."""
+def _primary_page(el) -> object:
+    """요소의 대표 페이지. 페이지 횡단 병합(list)이면 첫 페이지."""
+    p = el.source.page
+    if isinstance(p, list):
+        return p[0] if p else None
+    return p
+
+
+def to_markdown(doc: Document, paginate: bool = False) -> str:
+    """System Prompt §5 구조의 마크다운 생성.
+
+    paginate=True이면 페이지가 바뀔 때마다 구분자(`----- 페이지 N -----`)를 삽입한다.
+    페이지 정보가 없는 포맷(xlsx/hwp 등)에서는 구분자가 생기지 않는다."""
     out = [f"# {doc.document_title}", "", MD_HEADER_NOTE, "", "---", ""]
+    cur_page = None
     for el in sorted(doc.elements, key=lambda x: x.order):
+        if paginate:
+            pg = _primary_page(el)
+            if pg is not None and pg != cur_page:
+                cur_page = pg
+                out += [f"----- 페이지 {pg} -----", ""]
         if el.type == "heading":
             level = min(max(el.level, 1), 4)
             out.append(f"{'#' * level} {el.content}")

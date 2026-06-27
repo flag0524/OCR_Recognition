@@ -15,8 +15,10 @@ class Result:
     json: str
 
 
-def process(path: str | Path, use_llm: bool = True) -> Result:
-    """입력 파일을 처리해 MD+JSON을 반환. 비규격 출력은 검증 단계에서 차단."""
+def process(path: str | Path, use_llm: bool = True, paginate: bool = False) -> Result:
+    """입력 파일을 처리해 MD+JSON을 반환. 비규격 출력은 검증 단계에서 차단.
+
+    paginate=True이면 Markdown 출력에 페이지 구분자를 삽입한다(datalab paginate_output 대응)."""
     fmt = identify.identify(path)  # 1. 식별 (미지원이면 예외)
     extractors = {
         "pdf": extract_pdf.extract,      # 텍스트 PDF + 스캔 페이지 OCR 폴백
@@ -30,7 +32,7 @@ def process(path: str | Path, use_llm: bool = True) -> Result:
 
     doc = extractors[fmt](path)                  # 2. 결정론적 추출
     doc = context_llm.refine(doc, use_llm=use_llm)  # 3. 맥락 교정(폴백)
-    md = serialize.to_markdown(doc)              # 4. 직렬화
+    md = serialize.to_markdown(doc, paginate=paginate)  # 4. 직렬화
     js = serialize.to_json(doc)
     validate.validate_json(js)                   # 5. 검증
     validate.validate_markdown(md)
