@@ -120,12 +120,6 @@
         <div class="res-body">
           <!-- Configuration 패널 -->
           <div class="panel is-on" data-panel="config">
-            <!-- 전환 한도 배너(원본 디자인) -->
-            <div class="quota-banner">
-              <div class="qb-title">전환을 위한 공공 한도</div>
-              <div class="qb-sub">구문당 10페이지 <a class="qb-link" href="#" onclick="return false">제한을 제거하려면 가입하세요 →</a></div>
-            </div>
-
             <div class="model-row">
               <div class="model" data-model="fast"><div class="mh"><span class="mt">빠르다</span><span class="radio"></span></div><div class="md">가장 낮은 지연 시간. 결정론적 추출만 수행하며 API 키가 필요 없습니다.</div></div>
               <div class="model sel" data-model="balanced"><div class="mh"><span class="mt">밸런스드</span><span class="radio"></span></div><div class="md">정확성과 지연 시간의 균형. 대부분의 문서에 잘 맞는 기본값입니다.</div></div>
@@ -207,12 +201,14 @@
           </div>
         </div>
 
-        <div class="res-footer">
-          <button class="run-btn" id="runBtn"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="lbl">문서 파싱</span></button>
-        </div>
-        <div class="toast" id="toast"></div>
       </section>
     </div>
+
+    <!-- 하단 액션바: 두 패널 아래 전체 폭, 중앙 정렬 -->
+    <div class="res-footer">
+      <button class="run-btn" id="runBtn"><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="lbl">문서 파싱</span></button>
+    </div>
+    <div class="toast" id="toast"></div>
   </div>
 
   <script src="app.js"></script>

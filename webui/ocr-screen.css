@@ -342,15 +342,6 @@ html.dark .badge{background:#fff;color:#161616;}
 .cfg-check .info{width:15px;height:15px;color:var(--muted);}
 
 /* ---- 참고 화면 반영: 안내 배너 · 설정 그룹 라벨 · 준비 중(비활성) 토글 (토큰 재사용) ---- */
-.quota-banner{
-  background:var(--accent-blue-soft);
-  border:1px solid color-mix(in oklch, var(--accent-blue) 35%, transparent);
-  border-radius:var(--r-md);padding:12px 16px;margin-bottom:18px;
-}
-.quota-banner .qb-title{font-size:13px;font-weight:700;color:var(--ink);}
-.quota-banner .qb-sub{margin-top:3px;font-size:13px;color:var(--body);}
-.quota-banner .qb-link{color:var(--accent-blue);font-weight:700;text-decoration:none;margin-left:8px;}
-.quota-banner .qb-link:hover{text-decoration:underline;}
 .cfg-group{
   grid-column:1/-1;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
   color:var(--muted);margin-top:6px;padding-top:14px;border-top:1px solid var(--hairline);
@@ -370,9 +361,11 @@ html.dark .badge{background:#fff;color:#161616;}
 .cfg-check.on .cbox,.opt.on .obox,.check.is-on .box{background:var(--accent-blue);border-color:var(--accent-blue);}
 .dropzone:hover,.dropzone.drag{border-color:var(--accent-blue);background:var(--accent-blue-soft);}
 /* .screen button{background:none;color:inherit}(0,0,1,1)를 이기도록 specificity 상향 */
-.screen .run-btn{background:var(--accent-blue);color:#fff;box-shadow:0 2px 8px rgba(59,127,227,.35);margin-left:0;width:100%;justify-content:center;height:46px;}
+.screen{position:relative;}
+.screen .run-btn{background:var(--accent-blue);color:#fff;box-shadow:0 2px 8px rgba(59,127,227,.35);margin-left:0;width:auto;min-width:300px;justify-content:center;height:46px;}
 .screen .run-btn:hover{background:#2f6fd0;}
 html.dark .screen .run-btn:hover{background:#5a93e6;}
+/* 하단 액션바: 두 패널 아래 전체 폭, 중앙 정렬 */
 .res-footer{justify-content:center;}
 
 /* 헤더 버튼: .screen button 리셋(0,0,1,1)을 이기도록 specificity 상향 — 디자인 원본 채움/테두리 복원 */
